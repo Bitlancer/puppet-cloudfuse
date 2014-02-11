@@ -11,6 +11,11 @@ define cloudfuse::mount (
   $other_options	= ["defaults", "allow_other"]
 )
 {
+
+  include cloudfuse
+
+  Class['cloudfuse'] -> Cloudfuse::Mount["$title"]
+
   $mount_options = concat([
       "umask=${umask}",
       "gid=${gid}",
@@ -24,10 +29,10 @@ define cloudfuse::mount (
     $other_options
   )
 
-  file { $name:
+  file { "$title":
     ensure => directory
   } ->
-  mount { $name:
+  mount { "$title":
     ensure => mounted,
     atboot => $atboot,
     device => cloudfuse,
