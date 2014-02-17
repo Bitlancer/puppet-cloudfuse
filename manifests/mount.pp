@@ -1,7 +1,7 @@
 define cloudfuse::mount (
   $username,
   $key,
-  $gid      = 0,
+  $gid		= 0,
   $authurl              = "https://auth.api.rackspacecloud.com/v1.0",
   $region		= "DFW",
   $use_servicenet	= true,
